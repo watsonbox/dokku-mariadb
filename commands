@@ -179,6 +179,12 @@ case "$1" in
     rm -f "$HOME/shared/$name"
     ;;
 
+  mariadb:backup)
+    check_container
+
+    $manage backup "$admin_pw"
+    ;;
+
   mariadb:status)
     if [[ "$id" != "" ]]; then
       echo "Mariadb container running with ID: ${id}"
@@ -239,6 +245,7 @@ case "$1" in
     mariadb:delete      <app>            Delete specified MariaDB database
     mariadb:dump        <app> <filename> Dump database to SQL format
     mariadb:restore     <app> <filename> Restore database from SQL format
+    mariadb:backup                       Incremental backup of all databases to $HOME/shared/backups
     mariadb:admin_console                Launch a MariaDB console as admin user
     mariadb:start                        Start the MariaDB docker container if it isn't running
     mariadb:stop                         Stop the MariaDB docker container

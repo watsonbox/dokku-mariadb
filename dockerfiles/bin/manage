@@ -89,6 +89,10 @@ case "$1" in
 
     mysql -u root --password="$admin_pw" -h "$ip" -P "$port" "$name" < "/shared/$filename"
   ;;
+  backup)
+    admin_pw=$2
+    automysqlbackup
+  ;;
   console)
     name=$2
     database_pw=$3
